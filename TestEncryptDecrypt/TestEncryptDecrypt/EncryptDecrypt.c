@@ -8,8 +8,6 @@
 
 #include "EncryptDecrypt.h"
 
-long int kP = 0;
-long int kQ = 0;
 long int kE = 0;
 long int kD = 0;
 long int kN = 0;
@@ -40,6 +38,8 @@ long int gcd(long int a, long int b)
     return a;
 }
 
+
+
 double exGcd(long int a,long int b)
 {
     long int x = 0;
@@ -55,12 +55,16 @@ double exGcd(long int a,long int b)
     return x;
 }
 
+
+
 char* itoa(long int val)
 {
     char* c = malloc(255);
     sprintf(c, "%ld",val);
     return c;
 }
+
+
 
 int checkPrimeNumber(int inputNumber)
 {
@@ -88,6 +92,7 @@ long int makePublicKey(long int num,long int roundLawNumber)
 }
 
 
+
 long int makeSecretKey(long int e,long int p,long int q)
 {
     long int d = 0;
@@ -97,10 +102,12 @@ long int makeSecretKey(long int e,long int p,long int q)
     
 }
 
-long int modPower(long int number, long int exp, long int n)
+
+
+long int modPower(long int data, long int exp, long int n)
 {
     long result = 1;
-    long powNumber = number;
+    long powNumber = data;
     
     // expを2のべき乗に分解して計算
     // powNumberはnumber ^ 1, number ^ 2, number ^ 4, number ^ 8, number ^ 16, ...
@@ -118,6 +125,7 @@ long int modPower(long int number, long int exp, long int n)
 }
 
 
+
 char* returnDecyptString(char* data)
 {
     long int strLength = strlen(data);
@@ -131,6 +139,7 @@ char* returnDecyptString(char* data)
     
     return results;
 }
+
 
 
 char* returnEncyptString(const char* data)
@@ -148,6 +157,8 @@ char* returnEncyptString(const char* data)
     return results;
 }
 
+
+
 void start(int p,int q)
 {
     kN = p * q;
@@ -159,8 +170,5 @@ void start(int p,int q)
     }
     
     kD = makeSecretKey(kE, p, q);
-    
-    kP = p;
-    kQ = q;
 }
 
